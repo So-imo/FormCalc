@@ -1,0 +1,9 @@
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\bin\Debug\netcoreapp3.1\FormCalc.exe
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\obj\Debug\netcoreapp3.1\FormCalc.AssemblyInfoInputs.cache
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\obj\Debug\netcoreapp3.1\FormCalc.AssemblyInfo.cs
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\obj\Debug\netcoreapp3.1\FormCalc.RazorTargetAssemblyInfo.cache
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\obj\Debug\netcoreapp3.1\staticwebassets\FormCalc.StaticWebAssets.Manifest.cache
+C:\Users\Alexander_Zakharkin1\source\repos\FormCalc\obj\Debug\netcoreapp3.1\staticwebassets\FormCalc.StaticWebAssets.xml
