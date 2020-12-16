@@ -71,7 +71,7 @@ namespace FormCalc.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Order>> Delete(int clientId)
         {
-            Order order= db.Orders.FirstOrDefault(x => x.ClientId == clientId);
+            Order order = db.Orders.FirstOrDefault(x => x.ClientId == clientId);
             if (order == null)
             {
                 return NotFound();
