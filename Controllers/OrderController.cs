@@ -17,8 +17,8 @@ namespace FormCalc.Controllers
             db = context;
             if (!db.Orders.Any())
             {
-                db.Orders.Add(new Order { ClientId = 0, ClientName = "Best Company", Cost = 1000.0});
-                db.Orders.Add(new Order { ClientId = 1, ClientName = "Worst Company", Cost = 100.0 });
+                db.Orders.Add(new Order { ClientId = 0, ClientName = "Best Company", Cost = 1000});
+                db.Orders.Add(new Order { ClientId = 1, ClientName = "Worst Company", Cost = 100 });
                 db.SaveChanges();
             }
         }

@@ -16,8 +16,7 @@ namespace FormCalc
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            //string con = @"Server=.\MSSQLSERVER;Database=FormCalcDb;Trusted_Connection=True;";
-            string con = "Data Source =.; Initial Catalog = Northwind; Integrated Security = True;";
+            string con = @"Data Source=localhost;Initial Catalog=FormCalcDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;";
 
             services.AddDbContext<OrderContext>(options => options.UseSqlServer(con));
 
