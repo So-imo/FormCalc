@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FormCalc.Controllers
 {
-    [Route("api/Orders/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
