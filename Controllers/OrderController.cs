@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace FormCalc.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Orders/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         OrderContext db;
-        public OrderController(OrderContext context)
+        public OrdersController(OrderContext context)
         {
             db = context;
             if (!db.Orders.Any())
             {
-                db.Orders.Add(new Order { ClientId = 0, ClientName = "Best Company", Cost = 1000});
-                db.Orders.Add(new Order { ClientId = 1, ClientName = "Worst Company", Cost = 100 });
+                db.Orders.Add(new Order { ClientName = "Best Company", Cost = 1000});
+                db.Orders.Add(new Order { ClientName = "Worst Company", Cost = 100 });
                 db.SaveChanges();
             }
         }
