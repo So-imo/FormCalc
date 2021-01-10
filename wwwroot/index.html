@@ -8,15 +8,15 @@
 </head>
 <body>
     <h2>Orders list</h2>
-    <form name="userForm">
-        <input type="hidden" name="id" value="0" />
+    <form name="orderForm">
+        <input type="hidden" name="clientId" value="0" />
         <div class="form-group col-md-5">
             <label for="clientId">Client ID</label>
             <input class="form-control" name="clientId" type="number"/>
         </div>
         <div class="form-group col-md-5">
-            <label for="name">Client name</label>
-            <input class="form-control" name="name"/>
+            <label for="clientName">Client name</label>
+            <input class="form-control" name="clientName"/>
         </div>
         <div class="panel-body">
             <button type="submit" id="submit" class="btn btn-primary">Save</button>
@@ -28,7 +28,7 @@
         <tbody>
         </tbody>
     </table>
-    <div>2021 © Zakharkin</div>
+    <div></div>
     <script>
         // Get all orders
         async function GetOrders() {
@@ -49,56 +49,56 @@
             }
         }
         // Get one client from DB
-        async function GetOrder(id) {
-            const response = await fetch("/api/orders/" + id, {
+        async function GetOrder(clientId) {
+            const response = await fetch("/api/orders/" + clientId, {
                 method: "GET",
                 headers: { "Accept": "application/json" }
             });
             if (response.ok === true) {
                 const order = await response.json();
-                const form = document.forms["userForm"];
-                form.elements["id"].value = order.clientId;
-                form.elements["name"].value = order.clientName;
+                const form = document.forms["orderForm"];
+                form.elements["clientId"].value = order.clientId;
+                form.elements["clientName"].value = order.clientName;
                 form.elements["cost"].value = order.cost;
             }
         }
         // Add client into DB
-        async function CreateUser(clientName, cost) {
+        async function CreateOrder(clientName, cost) {
 
-            const response = await fetch("api/users", {
+            const response = await fetch("api/orders", {
                 method: "POST",
                 headers: { "Accept": "application/json", "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: clientName,
-                    age: parseInt(cost, 10)
+                    clientName: clientName,
+                    cost: parseInt(cost, 10)
                 })
             });
             if (response.ok === true) {
-                const user = await response.json();
+                const order = await response.json();
                 reset();
-                document.querySelector("tbody").append(row(user));
+                document.querySelector("tbody").append(row(order));
             }
         }
         // Change entity
-        async function EditUser(userId, userName, userAge) {
-            const response = await fetch("api/users", {
+        async function EditOrder(clientId, clientName, cost) {
+            const response = await fetch("api/orders", {
                 method: "PUT",
                 headers: { "Accept": "application/json", "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    id: parseInt(userId, 10),
-                    name: userName,
-                    age: parseInt(userAge, 10)
+                    clientId: parseInt(clientId, 10),
+                    clientName: clientName,
+                    cost: parseInt(cost, 10)
                 })
             });
             if (response.ok === true) {
-                const user = await response.json();
+                const order = await response.json();
                 reset();
-                document.querySelector("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
+                document.querySelector("tr[data-rowid='" + order.clientId + "']").replaceWith(row(order));
             }
         }
         // Remove client
-        async function DeleteOrder(id) {
-            const response = await fetch("/api/orders/" + id, {
+        async function DeleteOrder(clientId) {
+            const response = await fetch("/api/orders/" + clientId, {
                 method: "DELETE",
                 headers: { "Accept": "application/json" }
             });
@@ -110,9 +110,9 @@
 
         // Reset form
         function reset() {
-            const form = document.forms["userForm"];
+            const form = document.forms["orderForm"];
             form.reset();
-            form.elements["id"].value = 0;
+            form.elements["clientId"].value = 0;
         }
         // Create table string
         function row(order) {
@@ -121,7 +121,7 @@
             tr.setAttribute("data-rowid", order.clientId);
 
             const idTd = document.createElement("td");
-            idTd.append(order.id);
+            idTd.append(order.clientId);
             tr.append(idTd);
 
             const nameTd = document.createElement("td");
@@ -135,24 +135,24 @@
             const linksTd = document.createElement("td");
 
             const editLink = document.createElement("a");
-            editLink.setAttribute("data-id", user.id);
+            editLink.setAttribute("data-id", order.clientId);
             editLink.setAttribute("style", "cursor:pointer;padding:15px;");
-            editLink.append("Изменить");
+            editLink.append("Edit");
             editLink.addEventListener("click", e => {
 
                 e.preventDefault();
-                GetUser(user.id);
+                GetOrder(order.clientId);
             });
             linksTd.append(editLink);
 
             const removeLink = document.createElement("a");
-            removeLink.setAttribute("data-id", user.id);
+            removeLink.setAttribute("data-id", order.clientId);
             removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
-            removeLink.append("Удалить");
+            removeLink.append("Remove");
             removeLink.addEventListener("click", e => {
 
                 e.preventDefault();
-                DeleteUser(user.id);
+                DeleteOrder(order.clientId);
             });
 
             linksTd.append(removeLink);
@@ -168,19 +168,19 @@
         })
 
         // Send form
-        document.forms["userForm"].addEventListener("submit", e => {
+        document.forms["orderForm"].addEventListener("submit", e => {
             e.preventDefault();
-            const form = document.forms["userForm"];
-            const id = form.elements["id"].value;
-            const name = form.elements["name"].value;
-            const age = form.elements["age"].value;
-            if (id == 0)
-                CreateUser(name, age);
+            const form = document.forms["orderForm"];
+            const clientId = form.elements["clientId"].value;
+            const clientName = form.elements["clientName"].value;
+            const cost = form.elements["cost"].value;
+            if (clientId == 0)
+                CreateOrder(clientName, cost);
             else
-                EditUser(id, name, age);
+                EditOrder(clientId, clientName, cost);
         });
 
-        // Orders load
+        // Orders loading
         GetOrders();
 
     </script>
